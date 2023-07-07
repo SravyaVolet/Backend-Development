@@ -1,0 +1,30 @@
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+    // ...
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+        // Find the user by username
+        User user = userRepository.findByUsername(userDTO.getUsername());
+
+        // Check if the user exists and if the password is correct
+        if (user == null || !passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
+
+        // Generate a JWT
+        String token = generateJwt(user.getId());
+
+        // Return the token in the response
+        return ResponseEntity.ok(token);
+    }
+
+    private String generateJwt(Long userId) {
+        // Generate a JWT with the user ID as the subject
+        // You can use a library like jjwt to generate the JWT
+        // Set the expiration time, signing algorithm, and any other claims you need
+
+        return "generated_jwt_here";
+    }
+}
