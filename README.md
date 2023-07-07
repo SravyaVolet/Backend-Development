@@ -16,12 +16,12 @@ Step 1: Clone the repository
 Step 2: Configure the application
 Open the src/main/resources/application.properties file and modify the following properties if needed:
 
-# H2 Database settings
+H2 Database settings:
 spring.datasource.url=jdbc:h2:mem:userdb
 spring.datasource.username=sa
 spring.datasource.password=password
 
-# JWT settings
+JWT settings:
 jwt.secret=your-secret-key
 jwt.expiration=86400000
 
